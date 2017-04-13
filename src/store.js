@@ -17,15 +17,13 @@ import rootSaga from './rootSaga';
 
 // Firebase config
 var config = {
-  apiKey: "AIzaSyBMF4gucpppk97a8pv9PrEkzIpx6w74Q2Q",
-  authDomain: "clinical-guidelines-alpha.firebaseapp.com",
-  databaseURL: "https://clinical-guidelines-alpha.firebaseio.com",
-  projectId: "clinical-guidelines-alpha",
-  storageBucket: "clinical-guidelines-alpha.appspot.com",
-  messagingSenderId: "772771058260"
+  apiKey: "AIzaSyDZmy5uwUUe2HjwjG8THBUDWmO3dYW3NXE",
+  authDomain: "clinical-guidelines-v01.firebaseapp.com",
+  databaseURL: "https://clinical-guidelines-v01.firebaseio.com",
+  projectId: "clinical-guidelines-v01",
+  storageBucket: "clinical-guidelines-v01.appspot.com",
+  messagingSenderId: "580769026128"
 };
-
-
 
 // create the store
 const sagaMiddleware = createSagaMiddleware();
