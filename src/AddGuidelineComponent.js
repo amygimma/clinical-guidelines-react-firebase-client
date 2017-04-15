@@ -41,7 +41,7 @@ class AddGuidelineComponent extends React.Component {
         <div>
           <label>Language</label>
           <div>
-            <Field name="organization" component="select">
+            <Field name="language" component="select">
               <option value=''>Choose one</option>
               <option value="arabic">Arabic</option>
               <option value="english">English</option>
