@@ -15,6 +15,7 @@ const store = configureStore();
 // grab our App and Profile containers
 import App from './AppContainer';
 import Profile from './ProfileContainer';
+import AddGuideline from './AddGuidelineContainer';
 
 // restricts access to a route for authenticated users only
 function PrivateRoute ({component: Component, ...rest}) {
@@ -36,6 +37,7 @@ ReactDOM.render(
       <div>
         <Route path="/" component={App}></Route>
         <PrivateRoute path="/profile" component={Profile} />
+        <PrivateRoute path="/add-guideline" component={AddGuideline} />
       </div>
     </Router>
   </Provider>,

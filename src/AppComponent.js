@@ -13,6 +13,9 @@ const AppComponent = ({authed, login, logout}) => {
     const profileLink = authed ?
       <Link to="/profile">Profile</Link> : "";
 
+    const AddGuidelineLink = authed?
+      <Link to="/add-guideline">Add Guideline</Link> : "";
+
     return (
       <div className="App">
         <div className="App-header">
@@ -21,7 +24,7 @@ const AppComponent = ({authed, login, logout}) => {
         </div>
         <div className="nav">
           <Link to="/">Guidelines</Link>
-          <Link to="/">Add Guideline</Link>
+          {AddGuidelineLink}
           {profileLink}
           {authButtons}
         </div>
