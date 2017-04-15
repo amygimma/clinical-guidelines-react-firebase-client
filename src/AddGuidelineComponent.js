@@ -1,6 +1,7 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Field, reduxForm } from 'redux-form';
-import {Editor, EditorState} from 'draft-js';
+import {Editor, EditorState, RichUtils} from 'draft-js';
 
 import './User.css';
 
@@ -49,7 +50,10 @@ class AddGuidelineComponent extends React.Component {
           </div>
         </div>
         <div>
-          <Editor editorState={this.state.editorState} onChange={this.onChange} />
+          <div>
+            <label>Body</label>
+            <Editor editorState={this.state.editorState} onChange={this.onChange} />
+          </div>
         </div>
         <div>
           <button type="submit" disabled={pristine || submitting}>Submit</button>
