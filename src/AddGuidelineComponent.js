@@ -2,6 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import {Editor, EditorState, RichUtils} from 'draft-js';
 
+import './RichEditor.css';
 import './User.css';
 
 const styleMap = {
