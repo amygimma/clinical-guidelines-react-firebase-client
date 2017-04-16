@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { pathToJS, firebaseConnect } from 'react-redux-firebase';
+import { pathToJS } from 'react-redux-firebase';
 
 import AddGuidelineComponent from './AddGuidelineComponent';
 

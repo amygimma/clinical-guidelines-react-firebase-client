@@ -1,6 +1,6 @@
 import React from 'react';
 import { firebaseConnect } from 'react-redux-firebase'
-import { pathToJS, dataToJS } from 'react-redux-firebase'
+import { pathToJS } from 'react-redux-firebase'
 import { connect } from 'react-redux';
 
 
