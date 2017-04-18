@@ -144,8 +144,6 @@ class AddGuidelineComponent extends React.Component {
 
     console.log("handleSubmit");
     console.log(this.state);
-    console.log(this.props);
-    console.log(store.getStore());
     console.log("end handleSubmit");
   }
 
