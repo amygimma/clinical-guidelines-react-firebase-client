@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import {Editor, EditorState, RichUtils} from 'draft-js';
+import {Editor, EditorState, RichUtils, convertFromRaw, convertToRaw} from 'draft-js';
 
 import './RichEditor.css';
 import './User.css';
@@ -108,7 +108,11 @@ class AddGuidelineComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {editorState: EditorState.createEmpty()};
-    this.onChange = (editorState) => this.setState({editorState});
+    this.onChange = (editorState) => {
+      // console.log(editorState.getBlockMap());
+      console.log(convertToRaw(editorState.getCurrentContent()));
+      this.setState({editorState})
+    }
 
     this.handleKeyCommand = (command) => this._handleKeyCommand(command);
     this.toggleBlockType = (type) => this._toggleBlockType(type);
