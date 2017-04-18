@@ -1,9 +1,27 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import {Editor, EditorState, RichUtils, convertFromRaw, convertToRaw} from 'draft-js';
+import * as firebase from 'firebase';
+import store from './store';
 
 import './RichEditor.css';
 import './User.css';
+
+var config = {
+  apiKey: "AIzaSyDZmy5uwUUe2HjwjG8THBUDWmO3dYW3NXE",
+  authDomain: "clinical-guidelines-v01.firebaseapp.com",
+  databaseURL: "https://clinical-guidelines-v01.firebaseio.com",
+  projectId: "clinical-guidelines-v01",
+  storageBucket: "clinical-guidelines-v01.appspot.com",
+  messagingSenderId: "580769026128"
+};
+
+const database = firebase
+  .initializeApp(config)
+  .database()
+  .ref();
+
+const addLocation = data => database.child('guidelines').push(data, response => response);
 
 const styleMap = {
   CODE: {
@@ -117,6 +135,18 @@ class AddGuidelineComponent extends React.Component {
     this.handleKeyCommand = (command) => this._handleKeyCommand(command);
     this.toggleBlockType = (type) => this._toggleBlockType(type);
     this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    console.log("handleSubmit");
+    console.log(this.state);
+    console.log(this.props);
+    console.log(store.getStore());
+    console.log("end handleSubmit");
   }
 
   _handleKeyCommand(command) {
@@ -148,7 +178,7 @@ class AddGuidelineComponent extends React.Component {
 }
 
   render() {
-    const { handleSubmit, pristine, submitting } = this.props;
+    const { pristine, submitting } = this.props;
     const {editorState} = this.state;
 
     // If the user changes block type before entering any text, we can
@@ -162,7 +192,7 @@ class AddGuidelineComponent extends React.Component {
     }
 
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={this.handleSubmit}>
         <div>
           <label>Name</label>
           <div>
