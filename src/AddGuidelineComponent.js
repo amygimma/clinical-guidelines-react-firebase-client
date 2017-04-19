@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import {Editor, EditorState, RichUtils, convertFromRaw, convertToRaw} from 'draft-js';
 import * as firebase from 'firebase';
 import configureStore from './store';
+import { connect } from 'react-redux';
 
 import './RichEditor.css';
 import './User.css';
@@ -21,7 +22,7 @@ const database = firebase
   .database()
   .ref();
 
-const addLocation = data => database.child('guidelines').push(data, response => response);
+const addGuideline = data => database.child('guidelines').push(data, response => response);
 
 const styleMap = {
   CODE: {
@@ -145,8 +146,15 @@ class AddGuidelineComponent extends React.Component {
 
     // console.log("handleSubmit");
     var st = store.getState()
-    // console.log(this.state);
-    // console.log(st);
+    var data = {
+      name: this.props.formValues.simple.values.name,
+      organization: this.props.formValues.simple.values.organization,
+      language: this.props.formValues.simple.values.language,
+      body: convertToRaw(this.state.editorState.getCurrentContent())
+    }
+    console.log(data);
+    addGuideline(data);
+    window.location = '/';
     // console.log("end handleSubmit");
   }
 
@@ -262,6 +270,12 @@ class AddGuidelineComponent extends React.Component {
   }
 }
 
+const mapStateToProps = ({form}) => {
+  return {
+    formValues: form
+  }
+}
+
 export default reduxForm({
   form: 'simple', // a unique identifier for this form
-})(AddGuidelineComponent);
+})(connect(mapStateToProps, null)(AddGuidelineComponent));
