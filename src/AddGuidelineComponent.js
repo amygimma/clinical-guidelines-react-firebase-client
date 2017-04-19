@@ -2,7 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import {Editor, EditorState, RichUtils, convertFromRaw, convertToRaw} from 'draft-js';
 import * as firebase from 'firebase';
-import store from './store';
+import configureStore from './store';
 
 import './RichEditor.css';
 import './User.css';
@@ -127,8 +127,8 @@ class AddGuidelineComponent extends React.Component {
     super(props);
     this.state = {editorState: EditorState.createEmpty()};
     this.onChange = (editorState) => {
-      // console.log(editorState.getBlockMap());
-      console.log(convertToRaw(editorState.getCurrentContent()));
+      // // console.log(editorState.getBlockMap());
+      // console.log(convertToRaw(editorState.getCurrentContent()));
       this.setState({editorState})
     }
 
@@ -141,10 +141,13 @@ class AddGuidelineComponent extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    const store = configureStore();
 
-    console.log("handleSubmit");
-    console.log(this.state);
-    console.log("end handleSubmit");
+    // console.log("handleSubmit");
+    var st = store.getState()
+    // console.log(this.state);
+    // console.log(st);
+    // console.log("end handleSubmit");
   }
 
   _handleKeyCommand(command) {
