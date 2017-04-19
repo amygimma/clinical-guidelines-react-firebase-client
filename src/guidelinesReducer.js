@@ -5,11 +5,11 @@ import {
 } from './constants'
 
 const initialState = {
-  isFetchingRequest = false;
+  isFetchingRequest: false,
   guidelines: []
 }
 
-function guidelines(state = initialState, action) {
+export default function guidelines(state = initialState, action) {
   switch (action.type) {
     case FETCH_GUIDELINES_REQUEST:
       return Object.assign({}, state, {
