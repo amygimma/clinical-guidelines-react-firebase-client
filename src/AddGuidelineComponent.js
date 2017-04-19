@@ -152,7 +152,7 @@ class AddGuidelineComponent extends React.Component {
       language: this.props.formValues.simple.values.language,
       body: convertToRaw(this.state.editorState.getCurrentContent())
     }
-
+    addGuideline(data);
     window.location = '/';
     // console.log("end handleSubmit");
   }
