@@ -23,7 +23,7 @@ const AppComponent = ({authed, login, logout}) => {
           <h2>Welcome to Clinical Guidelines V0.1</h2>
         </div>
         <div className="nav">
-          <Link to="/">Guidelines</Link>
+          <Link to="/guidelines">Guidelines</Link>
           {AddGuidelineLink}
           {profileLink}
           {authButtons}
