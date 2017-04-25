@@ -38,6 +38,7 @@ ReactDOM.render(
       <div>
         <Route path="/" component={App}></Route>
         <Route path="/guidelines" component={GuidelinesContainer}></Route>
+        <Route path="/guidelines/:id" component={GuidelinesContainer}></Route>
         <PrivateRoute path="/profile" component={Profile} />
         <PrivateRoute path="/add-guideline" component={AddGuideline} />
       </div>

@@ -35,12 +35,15 @@ export const addGuidelineToReducer = (data) => {
 }
 
 export const addGuideline = (data, dispatch) => {
+  // ADD_GUIDELINES_REQUEST
   console.log('called addGuideline');
   return (dispatch) => {
     console.log('2');
     dispatch(addGuidelineToReducer(data));
 
     database.child('guidelines').push(data, response => {
+      //ADD_GUIDELINES_SUCCESS
+      console.log(response);
       dispatch(addGuidelineToReducer(data));
     })
   }
