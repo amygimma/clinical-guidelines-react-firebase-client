@@ -9,25 +9,46 @@ var config = {
   messagingSenderId: "580769026128"
 };
 
-const guidelinesDb = firebase
+const database = firebase
   .initializeApp(config)
   .database()
-  .ref('guidelines');
+  .ref();
 
 import {
-  FETCH_GUIDELINES_REQUEST,
+  // FETCH_GUIDELINES_REQUEST,
   FETCH_GUIDELINES_SUCCESS,
-  FETCH_GUIDELINES_ERROR,
-  ADD_GUIDELINES_REQUEST,
-  ADD_GUIDELINES_SUCCESS,
-  ADD_GUIDELINES_ERROR,
+  // FETCH_GUIDELINES_ERROR,
+  // ADD_GUIDELINES_REQUEST,
+  // ADD_GUIDELINES_SUCCESS,
+  // ADD_GUIDELINES_ERROR,
   ADD_GUIDELINE
 } from './constants'
 
+
+export const addGuidelineToReducer = (data) => {
+  console.log(data);
+  console.log('here');
+  return {
+    type: ADD_GUIDELINE,
+    payload: data
+  }
+}
+
+export const addGuideline = (data) => {
+  console.log('called addGuideline');
+  return (dispatch) => {
+    console.log(dispatch)
+    dispatch(addGuidelineToReducer(data));
+
+    database.child('guidelines').push(data, response => {
+      dispatch(addGuidelineToReducer(data));
+    })
+  }
+}
 // console.log(FETCH_GUIDELINES_REQUEST);
 export const fetchGuidelinesRequest = () => {
   return (dispatch) => {
-    guidelinesDb.ref.on('child_added', (snapshot) => {
+    database.ref.on('child_added', (snapshot) => {
       dispatch(addGuideline(snapshot.val()));
     })
   }
@@ -35,21 +56,14 @@ export const fetchGuidelinesRequest = () => {
 
 export const fetchGuidelinesSuccess = (error) => {
   return {
-    type: FETCH_GUIDELINES_ERROR,
+    type: FETCH_GUIDELINES_SUCCESS,
     payload: error
   }
 }
 
-export const fetchGuidelinesError = (data) => {
-  return {
-    type: FETCH_GUIDELINES_SUCCESS,
-    payload: data
-  }
-}
-
-export const addGuideline = (data) => {
-  return {
-    type: ADD_GUIDELINE,
-    payload: data
-  }
-}
+// export const fetchGuidelinesError = (data) => {
+//   return {
+//     type: FETCH_GUIDELINES_ERROR,
+//     payload: data
+//   }
+// }

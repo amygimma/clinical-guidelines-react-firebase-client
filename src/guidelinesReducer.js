@@ -1,7 +1,7 @@
 import {
   FETCH_GUIDELINES_REQUEST,
   FETCH_GUIDELINES_SUCCESS,
-  FETCH_GUIDELINES_ERROR
+  // FETCH_GUIDELINES_ERROR
 } from './constants'
 
 const initialState = {

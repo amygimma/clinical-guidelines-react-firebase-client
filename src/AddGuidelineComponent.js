@@ -1,10 +1,8 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import {Editor, EditorState, RichUtils, convertFromRaw, convertToRaw} from 'draft-js';
-import * as firebase from 'firebase';
-import configureStore from './store';
+import {Editor, EditorState, RichUtils, convertToRaw} from 'draft-js';
+// import configureStore from './store';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import * as Actions from './actions';
 
 import './RichEditor.css';
@@ -144,18 +142,18 @@ class AddGuidelineComponent extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const store = configureStore();
+    // const store = configureStore();
 
     // console.log("handleSubmit");
-    var st = store.getState()
+    // var st = store.getState()
     var data = {
       name: this.props.formValues.simple.values.name,
       organization: this.props.formValues.simple.values.organization,
       language: this.props.formValues.simple.values.language,
       body: convertToRaw(this.state.editorState.getCurrentContent())
     }
-    // addGuideline(data);
-    window.location = '/';
+    this.props.addGuideline(data);
+    // window.location = '/';
     // console.log("end handleSubmit");
   }
 
@@ -188,6 +186,7 @@ class AddGuidelineComponent extends React.Component {
 }
 
   render() {
+    console.log(this.props);
     const { pristine, submitting } = this.props;
     const {editorState} = this.state;
 
@@ -278,10 +277,9 @@ const mapStateToProps = ({form}) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  actions: {
-    bindActionCreators({
-      addGuideline: Actions.addGuideline
-    }, dispatch)
+  return {
+    addGuideline: Actions.addGuideline,
+    dispatch
   }
 }
 
