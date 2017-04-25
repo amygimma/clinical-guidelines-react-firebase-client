@@ -45,6 +45,7 @@ export const addGuideline = (data, dispatch) => {
       //ADD_GUIDELINES_SUCCESS
       console.log(response);
       dispatch(addGuidelineToReducer(data));
+      window.location = `guideline/${data.uid}`
     })
   }
 }
