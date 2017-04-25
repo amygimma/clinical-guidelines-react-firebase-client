@@ -4,6 +4,8 @@ import {Editor, EditorState, RichUtils, convertToRaw} from 'draft-js';
 // import configureStore from './store';
 import { connect } from 'react-redux';
 import * as Actions from './actions';
+import uuidV1 from 'uuid/v1';
+
 
 import './RichEditor.css';
 import './User.css';
@@ -150,8 +152,10 @@ class AddGuidelineComponent extends React.Component {
       name: this.props.formValues.simple.values.name,
       organization: this.props.formValues.simple.values.organization,
       language: this.props.formValues.simple.values.language,
-      body: convertToRaw(this.state.editorState.getCurrentContent())
+      body: convertToRaw(this.state.editorState.getCurrentContent()),
+      uid: uuidV1()
     }
+    console.log(data);
     this.props.addGuideline(data);
     // window.location = '/';
     // console.log("end handleSubmit");
