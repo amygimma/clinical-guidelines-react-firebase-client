@@ -4,25 +4,27 @@ import {Editor, EditorState, RichUtils, convertFromRaw, convertToRaw} from 'draf
 import * as firebase from 'firebase';
 import configureStore from './store';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as Actions from './actions';
 
 import './RichEditor.css';
 import './User.css';
 
-var config = {
-  apiKey: "AIzaSyDZmy5uwUUe2HjwjG8THBUDWmO3dYW3NXE",
-  authDomain: "clinical-guidelines-v01.firebaseapp.com",
-  databaseURL: "https://clinical-guidelines-v01.firebaseio.com",
-  projectId: "clinical-guidelines-v01",
-  storageBucket: "clinical-guidelines-v01.appspot.com",
-  messagingSenderId: "580769026128"
-};
-
-const database = firebase
-  .initializeApp(config)
-  .database()
-  .ref();
-
-const addGuideline = data => database.child('guidelines').push(data, response => response);
+// var config = {
+//   apiKey: "AIzaSyDZmy5uwUUe2HjwjG8THBUDWmO3dYW3NXE",
+//   authDomain: "clinical-guidelines-v01.firebaseapp.com",
+//   databaseURL: "https://clinical-guidelines-v01.firebaseio.com",
+//   projectId: "clinical-guidelines-v01",
+//   storageBucket: "clinical-guidelines-v01.appspot.com",
+//   messagingSenderId: "580769026128"
+// };
+//
+// const database = firebase
+//   .initializeApp(config)
+//   .database()
+//   .ref();
+//
+// const addGuideline = data => database.child('guidelines').push(data, response => response);
 
 const styleMap = {
   CODE: {
@@ -152,7 +154,7 @@ class AddGuidelineComponent extends React.Component {
       language: this.props.formValues.simple.values.language,
       body: convertToRaw(this.state.editorState.getCurrentContent())
     }
-    addGuideline(data);
+    // addGuideline(data);
     window.location = '/';
     // console.log("end handleSubmit");
   }
@@ -275,6 +277,14 @@ const mapStateToProps = ({form}) => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  actions: {
+    bindActionCreators({
+      addGuideline: Actions.addGuideline
+    }, dispatch)
+  }
+}
+
 export default reduxForm({
   form: 'simple', // a unique identifier for this form
-})(connect(mapStateToProps, null)(AddGuidelineComponent));
+})(connect(mapStateToProps, mapDispatchToProps)(AddGuidelineComponent));
