@@ -21,14 +21,7 @@ export default function guidelines(state = initialState, action) {
         guidelines: action.payload
       })
     case ADD_GUIDELINE:
-    console.log("reducer");
-      return Object.assign({}, state, {
-        guidelines: action.payload
-      })
-    // case FETCH_GUIDELINES_ERROR:
-    //   return Object.assign({}, state, {
-    //     guidelines: action.payload
-    //   })
+      return [...state, action.payload]
     default:
       return state
   }

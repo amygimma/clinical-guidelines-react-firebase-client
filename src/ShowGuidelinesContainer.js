@@ -4,13 +4,14 @@ import { pathToJS } from 'react-redux-firebase';
 
 import ShowGuidelinesComponent from './ShowGuidelinesComponent';
 
-const ShowGuidelinesContainer = ({profile}) => (
-  <ShowGuidelinesComponent profile={profile}/>
+const ShowGuidelinesContainer = ({profile}, {guidelines}) => (
+  <ShowGuidelinesComponent profile={profile} guidelines={guidelines}/>
 );
 
 
-const mapStateToProps = ({firebase}) => {
+const mapStateToProps = ({firebase}, {guidelines}) => {
   return {
+    guidelines,
     profile: pathToJS(firebase, 'profile') || {}
   }
 };

@@ -32,6 +32,7 @@ function PrivateRoute ({component: Component, ...rest}) {
   )
 }
 
+const guidelines = pathToJS(store.getState().firebase, 'guidelines');
 
 ReactDOM.render(
   <Provider store={store}>
@@ -39,7 +40,7 @@ ReactDOM.render(
       <div>
         <Route path="/" component={App}></Route>
         <Route path="/guideline/:id" component={ShowGuidelinesContainer}></Route>
-        <Route path="/guidelines" component={GuidelinesContainer}></Route>
+        <Route path="/guidelines" component={GuidelinesContainer} guidelines={guidelines}></Route>
         <PrivateRoute path="/profile" component={Profile} />
         <PrivateRoute path="/add-guideline" component={AddGuideline} />
       </div>

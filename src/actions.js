@@ -26,8 +26,6 @@ import {
 
 
 export const addGuidelineToReducer = (data) => {
-  console.log(data);
-  console.log('here');
   return {
     type: ADD_GUIDELINE,
     payload: data
@@ -36,20 +34,16 @@ export const addGuidelineToReducer = (data) => {
 
 export const addGuideline = (data, dispatch) => {
   // ADD_GUIDELINES_REQUEST
-  console.log('called addGuideline');
   return (dispatch) => {
-    console.log('2');
-    dispatch(addGuidelineToReducer(data));
+    // dispatch(addGuidelineToReducer(data));
 
     database.child('guidelines').push(data, response => {
       //ADD_GUIDELINES_SUCCESS
-      console.log(response);
       dispatch(addGuidelineToReducer(data));
-      window.location = `guideline/${data.uid}`
+      // window.location = `guideline/${data.uid}`
     })
   }
 }
-// console.log(FETCH_GUIDELINES_REQUEST);
 export const fetchGuidelinesRequest = () => {
   return (dispatch) => {
     database.ref.on('child_added', (snapshot) => {

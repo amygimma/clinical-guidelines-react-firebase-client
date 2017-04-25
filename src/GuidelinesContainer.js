@@ -10,6 +10,7 @@ const GuidelinesContainer = ({profile}) => (
 
 
 const mapStateToProps = ({firebase}) => {
+  console.log(firebase);
   return {
     profile: pathToJS(firebase, 'profile') || {}
   }

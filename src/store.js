@@ -36,7 +36,6 @@ const configureStore = () => {
         }
       })))
   };
-
   return store;
 };
 

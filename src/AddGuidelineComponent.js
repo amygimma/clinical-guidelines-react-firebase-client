@@ -1,7 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import {Editor, EditorState, RichUtils, convertToRaw} from 'draft-js';
-// import configureStore from './store';
 import { connect } from 'react-redux';
 import * as Actions from './actions';
 import uuidV1 from 'uuid/v1';
@@ -9,22 +8,6 @@ import uuidV1 from 'uuid/v1';
 
 import './RichEditor.css';
 import './User.css';
-
-// var config = {
-//   apiKey: "AIzaSyDZmy5uwUUe2HjwjG8THBUDWmO3dYW3NXE",
-//   authDomain: "clinical-guidelines-v01.firebaseapp.com",
-//   databaseURL: "https://clinical-guidelines-v01.firebaseio.com",
-//   projectId: "clinical-guidelines-v01",
-//   storageBucket: "clinical-guidelines-v01.appspot.com",
-//   messagingSenderId: "580769026128"
-// };
-//
-// const database = firebase
-//   .initializeApp(config)
-//   .database()
-//   .ref();
-//
-// const addGuideline = data => database.child('guidelines').push(data, response => response);
 
 const styleMap = {
   CODE: {
@@ -130,8 +113,6 @@ class AddGuidelineComponent extends React.Component {
     super(props);
     this.state = {editorState: EditorState.createEmpty()};
     this.onChange = (editorState) => {
-      // // console.log(editorState.getBlockMap());
-      // console.log(convertToRaw(editorState.getCurrentContent()));
       this.setState({editorState})
     }
 
@@ -146,7 +127,6 @@ class AddGuidelineComponent extends React.Component {
     e.preventDefault();
     // const store = configureStore();
 
-    // console.log("handleSubmit");
     // var st = store.getState()
     var data = {
       name: this.props.formValues.simple.values.name,
@@ -155,10 +135,8 @@ class AddGuidelineComponent extends React.Component {
       body: convertToRaw(this.state.editorState.getCurrentContent()),
       uid: uuidV1()
     }
-    console.log(data);
     this.props.addGuideline(data);
     // window.location = '/';
-    // console.log("end handleSubmit");
   }
 
   _handleKeyCommand(command) {
@@ -190,7 +168,6 @@ class AddGuidelineComponent extends React.Component {
 }
 
   render() {
-    console.log(this.props);
     const { pristine, submitting } = this.props;
     const {editorState} = this.state;
 
