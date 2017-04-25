@@ -34,10 +34,10 @@ export const addGuidelineToReducer = (data) => {
   }
 }
 
-export const addGuideline = (data) => {
+export const addGuideline = (data, dispatch) => {
   console.log('called addGuideline');
   return (dispatch) => {
-    console.log(dispatch)
+    console.log('2');
     dispatch(addGuidelineToReducer(data));
 
     database.child('guidelines').push(data, response => {

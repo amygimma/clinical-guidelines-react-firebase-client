@@ -278,8 +278,7 @@ const mapStateToProps = ({form}) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addGuideline: Actions.addGuideline,
-    dispatch
+    addGuideline: function(data){ dispatch(Actions.addGuideline(data)); }
   }
 }
 

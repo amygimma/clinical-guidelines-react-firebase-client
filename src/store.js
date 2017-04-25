@@ -1,8 +1,10 @@
 import { reactReduxFirebase } from 'react-redux-firebase';
 import {
   createStore,
+  applyMiddleware,
   compose
 } from 'redux';
+import thunk from 'redux-thunk';
 
 // root reducer
 import rootReducer from './rootReducer';
@@ -24,7 +26,7 @@ var config = {
 const configureStore = () => {
   const store = {
     ...createStore(rootReducer, composeEnhancers(
-      reactReduxFirebase(config, {
+      applyMiddleware(thunk), reactReduxFirebase(config, {
         userProfile: 'users', // where profiles are stored in database
         profileFactory: (userData) => { // how profiles are stored in database
           return {

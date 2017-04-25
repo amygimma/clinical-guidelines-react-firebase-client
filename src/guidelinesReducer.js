@@ -1,6 +1,7 @@
 import {
   FETCH_GUIDELINES_REQUEST,
   FETCH_GUIDELINES_SUCCESS,
+  ADD_GUIDELINE
   // FETCH_GUIDELINES_ERROR
 } from './constants'
 
@@ -16,6 +17,11 @@ export default function guidelines(state = initialState, action) {
         isFetchingRequest: true
       })
     case FETCH_GUIDELINES_SUCCESS:
+      return Object.assign({}, state, {
+        guidelines: action.payload
+      })
+    case ADD_GUIDELINE:
+    console.log("reducer");
       return Object.assign({}, state, {
         guidelines: action.payload
       })
